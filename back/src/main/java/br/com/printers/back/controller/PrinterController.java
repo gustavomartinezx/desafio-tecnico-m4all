@@ -1,6 +1,7 @@
 package br.com.printers.back.controller;
 
 import br.com.printers.back.dto.PrinterStatusDTO;
+import br.com.printers.back.integration.PrinterSyncService;
 import br.com.printers.back.entity.Printer;
 import br.com.printers.back.service.PrinterService;
 import jakarta.validation.Valid;
@@ -20,9 +21,11 @@ import java.util.UUID;
 public class PrinterController {
 
     private final PrinterService printerService;
+    private final PrinterSyncService printerSyncService;
 
-    public PrinterController(PrinterService printerService) {
+    public PrinterController(PrinterService printerService, PrinterSyncService printerSyncService) {
         this.printerService = printerService;
+        this.printerSyncService = printerSyncService;
     }
 
     @GetMapping("/printers")
@@ -76,5 +79,10 @@ public class PrinterController {
 
         PrinterStatusDTO dto = new PrinterStatusDTO(status, paperLevel);
         return ResponseEntity.ok(dto);
+    }
+
+    @GetMapping("/sync/statistics")
+    public ResponseEntity<PrinterSyncService.SyncStats> syncPrinters() {
+        return ResponseEntity.ok(printerSyncService.syncPrinters());
     }
 }
