@@ -4,13 +4,15 @@ import br.com.printers.back.entity.User;
 import br.com.printers.back.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Autowired;
 
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+
+    public DatabaseSeeder(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public void run(String... args) {
