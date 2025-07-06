@@ -270,8 +270,8 @@ fastlane/screenshots
 /coverage
 
 # next.js
-/.next/
-/out/
+.next/
+out/
 
 # production
 /build
