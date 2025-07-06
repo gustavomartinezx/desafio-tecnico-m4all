@@ -8,14 +8,12 @@ export const useSyncStatistics = () => {
     queryFn: async () => {
       const token =
         typeof window !== "undefined" ? localStorage.getItem("token") : null;
-      const response = await axios.get(
-        "http://localhost:8080/api/v1/sync/statistics",
-        {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        }
-      );
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+      const response = await axios.get(`${apiUrl}/api/v1/sync/statistics`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
       return response.data;
     },
-    staleTime: 1000 * 60 * 5, 
+    staleTime: 1000 * 60 * 5,
   });
 };
