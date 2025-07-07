@@ -12,6 +12,7 @@ Um sistema de desafio da media4all full-stack para o gerenciamento e monitoramen
   - [Instalação e Configuração](#instalação-e-configuração)
 - [Documentação da API](#📚-documentação-da-api)
 - [Roadmap](#🗺️-roadmap)
+- [Como testar o backend e rodar testes unitários](#🧪-como-testar-o-backend-e-rodar-testes-unitários)
 
 ## 🎯 Sobre o Projeto
 
@@ -80,9 +81,9 @@ Este projeto é uma plataforma completa para a gestão de impressoras. Realizado
     - Preencha as variáveis de ambiente no arquivo `.env` conforme o exemplo:
       ```env
       MYSQL_DATABASE=impressora
-      MYSQL_USER=gustavo
-      MYSQL_PASSWORD=SuaSenhaAqui
-      MYSQL_ROOT_PASSWORD=root
+      MYSQL_USER=seu_usuario
+      MYSQL_PASSWORD=sua_senha
+      MYSQL_ROOT_PASSWORD=sua_senha_root
       MYSQL_HOST=db
       MYSQL_PORT=3306
       ```
@@ -128,3 +129,33 @@ Este projeto é uma plataforma completa para a gestão de impressoras. Realizado
 - [ ] **Autenticação e Autorização:** Implementar controle de acesso com JWT.
 - [ ] **Perfis de Usuário:** Adicionado perfis de usuário (ADMIN)
 - [ ] **Dashboard :** Gráficos interativos sobre uso e status.
+
+## 🧪 Como testar o backend e rodar testes unitários
+
+### Rodando o backend localmente
+
+1. Pegue os valores das variáveis de ambiente e coloque em application.properties em back/src/main/resources/application.properties
+
+```sh
+MYSQL_DATABASE=impressora
+MYSQL_USER=seu_usuario
+MYSQL_PASSWORD=sua_senha
+```
+
+3. Execute o backend:
+
+```sh
+cd back
+./mvnw spring-boot:run
+```
+
+### Rodando os testes unitários do backend
+
+1. Execute:
+
+```sh
+cd back
+./mvnw test
+```
+
+O resultado dos testes será exibido no terminal. Se aparecer `BUILD SUCCESS` e `Failures: 0, Errors: 0`, todos os testes passaram.
